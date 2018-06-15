@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+apply from: '../../node_modules/react-native/react.gradle'
+
+project.ext.vectoricons = [
+        iconFontNames: ['MaterialIcons.ttf']
+]
+
+apply from: '../../node_modules/react-native-vector-icons/fonts.gradle'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        applicationId 'com.github.vberegovoy.reddithome'
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName '1.0'
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+
+    //noinspection GradleDynamicVersion
+    implementation 'com.facebook.react:react-native:+'
+
+    implementation(project(':react-native-navigation')) {
+        exclude group: 'com.android.support'
+    }
+    implementation(project(':react-native-vector-icons')) {
+        exclude group: 'com.android.support'
+    }
+}
